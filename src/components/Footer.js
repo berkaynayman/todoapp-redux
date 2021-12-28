@@ -3,11 +3,9 @@ import React from 'react'
 function Footer() {
     return (
         <footer className="info">
-            <p>Click to edit a todo</p>
-            <p>Created by <a href="https://d12n.me/">Dmitry Sharabin</a></p>
-            <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+            <p>Created by <a target="_blank" href="https://github.com/berkaynayman">Berkay NAYMAN</a></p>
         </footer>
     )
 }
 
-export default Footer
+export default React.memo(Footer)
