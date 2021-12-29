@@ -1,25 +1,6 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
-import axios from "axios"
+import {createSlice} from "@reduxjs/toolkit"
+import {getTodosAsync, addTodoAsync, toggleTodoAsync, removeTodoAsync} from "./services"
 
-export const getTodosAsync = createAsyncThunk('todos/getTodosAsync', async () => {
-    const { data } = await axios('http://localhost:7000/todos')
-    return data
-}) 
-
-export const addTodoAsync  = createAsyncThunk('todos/addTodoAsync', async (todo) => {
-    const { data } = await axios.post('http://localhost:7000/todos', todo)
-    return data
-})
-
-export const toggleTodoAsync = createAsyncThunk('todos/toggleTodoAsync', async ({id, data}) => {
-    const res = await axios.patch(`http://localhost:7000/todos/${id}`, data)
-    return res.data
-})
-
-export const removeTodoAsync = createAsyncThunk('todos/removeTodoAsync', async (id) => {
-    await axios.delete(`http://localhost:7000/todos/${id}`)
-    return id
-})
 
 export const todosSlice = createSlice({
     name: 'todos',
@@ -27,19 +8,13 @@ export const todosSlice = createSlice({
         items: [],
         isLoading: false,
         error: null,
-        activeFilter: "all",
+        activeFilter: localStorage.getItem('activeFilter'),
         addNewTodo:{
             isLoading: false,
             error: null,
         }
     },
     reducers:{
-        /*
-        destroy: (state, action) => {
-            const id = action.payload
-            const filtered = state.items.filter((item) => item.id !== id)
-            state.items = [...filtered]
-        },*/
         changeActiveFilter: (state, action) => {
             state.activeFilter = action.payload;
         },
