@@ -42,6 +42,12 @@ let todos = [
 
 app.get('/todos', (req, res) => res.send(todos));
 
+app.get('/todos/true', (req, res) => {
+  const filtered = todos.filter((item) => item.completed == false)
+  res.send(filtered);
+});
+
+
 app.post('/todos', (req, res) => {
   const todo = { title: req.body.title, id: nanoid(), completed: false };
   todos.push(todo);

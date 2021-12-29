@@ -20,3 +20,8 @@ export const removeTodoAsync = createAsyncThunk('todos/removeTodoAsync', async (
     await axios.delete(`http://localhost:7000/todos/${id}`)
     return id
 })
+
+export const getTodosNotCompleted = createAsyncThunk('todos/getTodosNotCompleted', async () => {
+    const { data } = await axios('http://localhost:7000/todos/true')
+    return data
+}) 
