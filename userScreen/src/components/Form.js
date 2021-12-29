@@ -16,8 +16,8 @@ function Form() {
         setTitle("")
     }
 
-    const addNewTodoLoading = useSelector((state) => state.todos.addNewTodoLoading)
-    const error             = useSelector((state) => state.todos.addNewTodoError)
+    const addNewTodoLoading = useSelector((state) => state.todos.addNewTodo.isLoading)
+    const error             = useSelector((state) => state.todos.addNewTodo.isError)
 
     
     return (
